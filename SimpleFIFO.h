@@ -44,10 +44,10 @@ public:
 	int count() { return numberOfElements; }
 
 private:
-	int numberOfElements;
-	int nextIn;
-	int nextOut;
-	T raw[rawSize];
+	volatile int numberOfElements;
+	volatile int nextIn;
+	volatile int nextOut;
+	volatile T raw[rawSize];
 };
 
 template<typename T, int rawSize>
