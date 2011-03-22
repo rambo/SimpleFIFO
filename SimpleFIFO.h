@@ -1,3 +1,5 @@
+#ifndef SimpleFIFO_h
+#define SimpleFIFO_h
 /*
 ||
 || @file 		SimpleFIFO.h
@@ -77,3 +79,4 @@ template<typename T, int rawSize>
 void SimpleFIFO<T,rawSize>::flush() {
 	nextIn = nextOut = numberOfElements = 0;
 }
+#endif
