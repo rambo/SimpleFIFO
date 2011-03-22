@@ -33,7 +33,10 @@
 template<typename T, int rawSize>
 class SimpleFIFO {
 public:
+    /*
 	const int size;				//speculative feature, in case it's needed
+	*/
+	const char size;				//speculative feature, in case it's needed
 
 	SimpleFIFO();
 
@@ -46,9 +49,14 @@ public:
 	int count() { return numberOfElements; }
 
 private:
+    /*
 	volatile int numberOfElements;
 	volatile int nextIn;
 	volatile int nextOut;
+	*/
+	volatile char numberOfElements;
+	volatile char nextIn;
+	volatile char nextOut;
 	volatile T raw[rawSize];
 };
 
