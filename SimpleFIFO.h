@@ -33,9 +33,6 @@
 template<typename T, int rawSize>
 class SimpleFIFO {
 public:
-    /*
-	const int size;				//speculative feature, in case it's needed
-	*/
 	const char size;				//speculative feature, in case it's needed
 
 	SimpleFIFO();
@@ -46,18 +43,20 @@ public:
 	void flush();				//[1.1] reset to default state 
 
 	//how many elements are currently in the FIFO?
-	int count() { return numberOfElements; }
+	char count() { return numberOfElements; }
 
 private:
-    /*
-	volatile int numberOfElements;
-	volatile int nextIn;
-	volatile int nextOut;
-	*/
+#ifndef SimpleFIFO_NONVOLATILE
 	volatile char numberOfElements;
 	volatile char nextIn;
 	volatile char nextOut;
 	volatile T raw[rawSize];
+#else
+	char numberOfElements;
+	char nextIn;
+	char nextOut;
+	T raw[rawSize];
+#endif
 };
 
 template<typename T, int rawSize>
