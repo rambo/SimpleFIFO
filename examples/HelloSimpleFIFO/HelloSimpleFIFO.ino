@@ -11,11 +11,11 @@ void setup() {
   sFIFO.enqueue(4);
   sFIFO.enqueue(5);
   
-  Serial.print("Peek: ");
+  Serial.print(F("Peek: "));
   Serial.println(sFIFO.peek());
   
   for (int i=0; i<sFIFO.count(); i++) {
-    Serial.print("Dequeue ");
+    Serial.print(F("Dequeue "));
     Serial.println(sFIFO.dequeue());
   }
 }
