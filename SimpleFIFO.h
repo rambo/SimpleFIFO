@@ -47,14 +47,14 @@ public:
 
 private:
 #ifndef SimpleFIFO_NONVOLATILE
-	volatile char numberOfElements;
-	volatile char nextIn;
-	volatile char nextOut;
+	volatile unsigned int numberOfElements;
+	volatile unsigned int nextIn;
+	volatile unsigned int nextOut;
 	volatile T raw[rawSize];
 #else
-	char numberOfElements;
-	char nextIn;
-	char nextOut;
+	unsigned int numberOfElements;
+	unsigned int nextIn;
+	unsigned int nextOut;
 	T raw[rawSize];
 #endif
 };
