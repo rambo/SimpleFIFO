@@ -1,6 +1,13 @@
 #ifndef SimpleFIFO_h
 #define SimpleFIFO_h
 #include <Arduino.h>
+#ifndef SIMPLEFIFO_SIZE_TYPE
+#ifndef SIMPLEFIFO_LARGE
+#define SIMPLEFIFO_SIZE_TYPE uint8_t
+#else
+#define SIMPLEFIFO_SIZE_TYPE uint16_t
+#endif
+#endif
 /*
 ||
 || @file 		SimpleFIFO.h
@@ -34,7 +41,7 @@
 template<typename T, int rawSize>
 class SimpleFIFO {
 public:
-	const uint8_t size;				//speculative feature, in case it's needed
+	const SIMPLEFIFO_SIZE_TYPE size;				//speculative feature, in case it's needed
 
 	SimpleFIFO();
 
@@ -44,18 +51,18 @@ public:
 	void flush();				//[1.1] reset to default state 
 
 	//how many elements are currently in the FIFO?
-	uint8_t count() { return numberOfElements; }
+	SIMPLEFIFO_SIZE_TYPE count() { return numberOfElements; }
 
 private:
 #ifndef SimpleFIFO_NONVOLATILE
-	volatile uint8_t numberOfElements;
-	volatile uint8_t nextIn;
-	volatile uint8_t nextOut;
+	volatile SIMPLEFIFO_SIZE_TYPE numberOfElements;
+	volatile SIMPLEFIFO_SIZE_TYPE nextIn;
+	volatile SIMPLEFIFO_SIZE_TYPE nextOut;
 	volatile T raw[rawSize];
 #else
-	uint8_t numberOfElements;
-	uint8_t nextIn;
-	uint8_t nextOut;
+	SIMPLEFIFO_SIZE_TYPE numberOfElements;
+	SIMPLEFIFO_SIZE_TYPE nextIn;
+	SIMPLEFIFO_SIZE_TYPE nextOut;
 	T raw[rawSize];
 #endif
 };
